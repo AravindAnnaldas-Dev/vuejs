@@ -1,3 +1,7 @@
+<script setup>
+import Heading from "@/components/Heading.vue";
+</script>
+
 <template>
-  <h1>Aravind</h1>
+  <Heading title="Vue JS demo component to use now." />
 </template>
