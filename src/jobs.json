@@ -1,0 +1,120 @@
+[
+  {
+    "id": "job_10291",
+    "title": "Frontend Developer (Vue.js)",
+    "company": {
+      "name": "PixelForge Labs",
+      "location": "Hyderabad, India",
+      "website": "https://pixelforge.dev"
+    },
+    "employmentType": "full-time",
+    "experienceLevel": "mid",
+    "skills": ["Vue.js", "JavaScript", "Tailwind CSS", "REST APIs"],
+    "salary": {
+      "currency": "INR",
+      "min": 600000,
+      "max": 900000,
+      "isConfidential": false
+    },
+    "remote": true,
+    "postedAt": "2026-03-20T10:15:00Z",
+    "description": "We are looking for a Vue.js developer to build scalable UI systems.",
+    "benefits": ["Health Insurance", "WFH Stipend"],
+    "isActive": true,
+    "applicantsCount": 34
+  },
+  {
+    "id": "job_10292",
+    "title": "Backend Engineer (Node.js)",
+    "company": {
+      "name": "DataSprint",
+      "location": "Bangalore, India",
+      "website": null
+    },
+    "employmentType": "full-time",
+    "experienceLevel": "senior",
+    "skills": ["Node.js", "PostgreSQL", "Docker", "AWS"],
+    "salary": {
+      "currency": "INR",
+      "min": null,
+      "max": null,
+      "isConfidential": true
+    },
+    "remote": false,
+    "postedAt": "2026-03-18T08:00:00Z",
+    "description": "Design and maintain high-performance backend services.",
+    "benefits": [],
+    "isActive": true,
+    "applicantsCount": 12
+  },
+  {
+    "id": "job_10293",
+    "title": "Full Stack Developer",
+    "company": {
+      "name": "NextGen Softworks",
+      "location": "Remote",
+      "website": "https://nextgensoftworks.com"
+    },
+    "employmentType": "contract",
+    "experienceLevel": "mid",
+    "skills": ["React", "Node.js", "MongoDB"],
+    "salary": {
+      "currency": "USD",
+      "min": 25,
+      "max": 40,
+      "isHourly": true
+    },
+    "remote": true,
+    "postedAt": "2026-03-15T14:45:00Z",
+    "description": "Work on client projects with flexible hours.",
+    "benefits": null,
+    "isActive": false,
+    "applicantsCount": 56
+  },
+  {
+    "id": "job_10294",
+    "title": "Junior QA Tester",
+    "company": {
+      "name": "BugTrackr",
+      "location": "Chennai, India",
+      "website": "https://bugtrackr.io"
+    },
+    "employmentType": "internship",
+    "experienceLevel": "entry",
+    "skills": ["Manual Testing", "JIRA"],
+    "salary": {
+      "currency": "INR",
+      "stipend": 15000
+    },
+    "remote": false,
+    "postedAt": "2026-03-10T09:30:00Z",
+    "description": "Assist in testing web applications and reporting bugs.",
+    "benefits": ["Certificate", "Pre-placement offer"],
+    "isActive": true,
+    "applicantsCount": 89
+  },
+  {
+    "id": "job_10295",
+    "title": "DevOps Engineer",
+    "company": {
+      "name": "CloudAxis",
+      "location": "Pune, India",
+      "website": "https://cloudaxis.ai"
+    },
+    "employmentType": "full-time",
+    "experienceLevel": "senior",
+    "skills": ["Kubernetes", "AWS", "CI/CD", "Terraform"],
+    "salary": {
+      "currency": "INR",
+      "min": 1200000,
+      "max": 1800000,
+      "bonus": "10%"
+    },
+    "remote": "hybrid",
+    "postedAt": "2026-03-22T11:20:00Z",
+    "description": "Manage infrastructure and deployment pipelines.",
+    "benefits": ["Stock Options", "Health Insurance", "Gym Membership"],
+    "isActive": true,
+    "applicantsCount": 21
+  }
+]

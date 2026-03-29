@@ -1,7 +1,11 @@
 <script setup>
-import Heading from "@/components/Heading.vue";
+import { ref } from "vue";
+import JobCard from "./components/JobCard.vue";
+import jobsList from "@/jobs.json";
+
+const jobs = ref(jobsList);
 </script>
 
 <template>
-  <Heading title="Vue JS demo component to use now." />
+  <JobCard v-for="job in jobs" :key="job.id" :job="job" />
 </template>
