@@ -1,11 +1,7 @@
 <script setup>
-import { ref } from "vue";
-import JobCard from "./components/JobCard.vue";
-import jobsList from "@/jobs.json";
-
-const jobs = ref(jobsList);
+import JobCards from "@/components/JobCards.vue";
 </script>
 
 <template>
-  <JobCard v-for="job in jobs" :key="job.id" :job="job" />
+  <JobCards :limit="5" />
 </template>
