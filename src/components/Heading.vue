@@ -10,5 +10,7 @@ defineProps({
 </script>
 
 <template>
-  <h1>{{ title }}</h1>
+  <h1 class="w-full py-4 font-medium text-center text-3xl/normal">
+    {{ title }}
+  </h1>
 </template>

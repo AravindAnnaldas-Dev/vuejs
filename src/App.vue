@@ -1,7 +1,10 @@
 <script setup>
-import JobCards from "@/components/JobCards.vue";
+import { RouterView } from "vue-router";
+import Heading from "./components/Heading.vue";
 </script>
 
 <template>
-  <JobCards :limit="5" />
+  <Heading :title="'Browse Jobs'" />
+
+  <RouterView />
 </template>
