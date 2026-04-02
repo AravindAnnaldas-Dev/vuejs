@@ -1,6 +1,7 @@
 <script setup>
 import CardWrapper from "@/components/CardWrapper.vue";
 import JobCards from "@/components/JobCards.vue";
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
@@ -19,11 +20,11 @@ import JobCards from "@/components/JobCards.vue";
   </div>
 
   <div class="flex items-center justify-center w-full mt-8">
-    <a
-      href="/jobs"
+    <RouterLink
+      to="/jobs"
       class="px-8 py-3 text-xl font-medium text-white transition bg-gray-900 rounded-lg cursor-pointer hover:bg-gray-800"
     >
       View all Jobs
-    </a>
+    </RouterLink>
   </div>
 </template>
