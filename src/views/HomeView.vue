@@ -2,10 +2,9 @@
 import { RouterLink } from "vue-router";
 import FeatureCard from "@/components/FeatureCard.vue";
 import ShoeCards from "@/components/ShoeCards.vue";
-import shoesList from "@/shoes.json";
 import { formatPrice } from "@/utils/productFormatter";
-
-const heroShoe = shoesList[0];
+import { computed, onMounted, reactive } from "vue";
+import axios from "axios";
 
 const highlights = [
   {
@@ -22,24 +21,49 @@ const highlights = [
   },
 ];
 
-const featuredStories = [
-  {
-    eyebrow: "Urban Rotation",
-    title: "Everyday sneakers with a premium edge",
-    description:
-      "Clean leather, soft suede touches, and neutral tones that work from coffee runs to evening plans.",
-    image: shoesList[1].image,
-    surfaceClass: "bg-[#eaded0]/90",
-  },
-  {
-    eyebrow: "Track Focus",
-    title: "Lightweight runners built to move fast",
-    description:
-      "Responsive foam, breathable uppers, and secure heel support for daily training without the bulk.",
-    image: shoesList[4].image,
-    surfaceClass: "bg-[#f3e7dc]/90",
-  },
-];
+const state = reactive({
+  shoes: [],
+  isLoading: true,
+});
+
+onMounted(async () => {
+  state.isLoading = true;
+  try {
+    const response = await axios.get("http://localhost:8000/shoes");
+    state.shoes = response.data;
+  } catch (error) {
+    console.error("Error fetching shoe collections", error);
+  } finally {
+    setTimeout(() => {
+      state.isLoading = false;
+    }, 10000);
+  }
+});
+
+const heroShoe = computed(() => {
+  return state.shoes[0];
+});
+
+const featuredStories = computed(() => {
+  return [
+    {
+      eyebrow: "Urban Rotation",
+      title: "Everyday sneakers with a premium edge",
+      description:
+        "Clean leather, soft suede touches, and neutral tones that work from coffee runs to evening plans.",
+      image: state.shoes[1].image,
+      surfaceClass: "bg-[#eaded0]/90",
+    },
+    {
+      eyebrow: "Track Focus",
+      title: "Lightweight runners built to move fast",
+      description:
+        "Responsive foam, breathable uppers, and secure heel support for daily training without the bulk.",
+      image: state.shoes[4].image,
+      surfaceClass: "bg-[#f3e7dc]/90",
+    },
+  ];
+});
 </script>
 
 <template>
@@ -94,6 +118,7 @@ const featuredStories = [
       </div>
 
       <div
+        v-if="state.shoes.length > 0"
         class="relative overflow-hidden rounded-[2.5rem] bg-stone-900 p-6 text-white shadow-2xl shadow-stone-300/70"
       >
         <div
@@ -157,6 +182,7 @@ const featuredStories = [
 
     <section class="grid gap-6 mx-auto mt-12 max-w-7xl lg:grid-cols-2">
       <FeatureCard
+        v-if="state.shoes.length > 0"
         v-for="story in featuredStories"
         :key="story.title"
         :eyebrow="story.eyebrow"
@@ -196,8 +222,8 @@ const featuredStories = [
         </RouterLink>
       </div>
 
-      <div class="mt-8">
-        <ShoeCards :limit="4" />
+      <div v-if="state.shoes.length > 0" class="mt-8">
+        <ShoeCards :shoes="state.shoes" :limit="4" />
       </div>
     </section>
   </main>

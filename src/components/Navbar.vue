@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { ref } from "vue";
 import { RouterLink, useRoute } from "vue-router";
 
 const route = useRoute();
@@ -18,7 +18,9 @@ const menuItems = [
   },
 ];
 
-const activeMenu = computed(() => route.name?.toString() ?? "");
+const activeMenu = (routePath) => {
+  return route.path === routePath;
+};
 
 const handleToggleMenu = () => {
   showMenuToggle.value = !showMenuToggle.value;
@@ -73,9 +75,9 @@ const handleToggleMenu = () => {
             <RouterLink
               :to="menuItem.path"
               @click="showMenuToggle = false"
-              :aria-current="activeMenu === menuItem.key ? 'page' : undefined"
+              :aria-current="activeMenu(menuItem.path)"
               :class="[
-                activeMenu === menuItem.key
+                activeMenu(menuItem.path)
                   ? 'bg-stone-900 text-white shadow-lg shadow-stone-300/50'
                   : 'text-stone-600 hover:bg-white hover:text-stone-900',
                 'block rounded-full px-4 py-2 text-sm font-medium transition',

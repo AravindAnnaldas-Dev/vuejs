@@ -1,5 +1,24 @@
 <script setup>
 import ShoeCards from "@/components/ShoeCards.vue";
+import axios from "axios";
+import { onMounted, reactive } from "vue";
+
+const state = reactive({
+  shoes: [],
+  isLoading: true,
+});
+
+onMounted(async () => {
+  state.isLoading = true;
+  try {
+    const response = await axios.get("http://localhost:8000/shoes");
+    state.shoes = response.data;
+  } catch (error) {
+    console.error("Error fetching shoe collections", error);
+  } finally {
+    state.isLoading = false;
+  }
+});
 </script>
 
 <template>
@@ -38,8 +57,8 @@ import ShoeCards from "@/components/ShoeCards.vue";
         </div>
       </div>
 
-      <div class="mt-10">
-        <ShoeCards />
+      <div v-if="state.shoes.length > 0" class="mt-10">
+        <ShoeCards :shoes="state.shoes" />
       </div>
     </section>
   </main>
