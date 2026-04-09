@@ -29,14 +29,12 @@ const state = reactive({
 onMounted(async () => {
   state.isLoading = true;
   try {
-    const response = await axios.get("http://localhost:8000/shoes");
+    const response = await axios.get("/api/shoes");
     state.shoes = response.data;
   } catch (error) {
     console.error("Error fetching shoe collections", error);
   } finally {
-    setTimeout(() => {
-      state.isLoading = false;
-    }, 10000);
+    state.isLoading = false;
   }
 });
 
@@ -84,13 +82,13 @@ const featuredStories = computed(() => {
         </h1>
         <p class="max-w-xl mt-5 text-lg leading-8 text-stone-600">
           The old jobs board has been turned into a shoe storefront with cleaner
-          product storytelling, stronger visuals, and a dedicated collection
+          product storytelling, stronger visuals, and a dedicated collections
           flow.
         </p>
 
         <div class="flex flex-wrap gap-4 mt-8">
           <RouterLink
-            to="/collection"
+            to="/collections"
             class="rounded-full bg-stone-900 px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#c56232]"
           >
             Shop Collection
@@ -191,7 +189,7 @@ const featuredStories = computed(() => {
         :image="story.image"
         :surface-class="story.surfaceClass"
         link-text="Explore Collection"
-        to="/collection"
+        to="/collections"
       />
     </section>
 
@@ -215,7 +213,7 @@ const featuredStories = computed(() => {
         </div>
 
         <RouterLink
-          to="/collection"
+          to="/collections"
           class="px-5 py-3 text-sm font-semibold transition border rounded-full border-stone-300 text-stone-700 hover:border-stone-900 hover:text-stone-900"
         >
           View Full Collection

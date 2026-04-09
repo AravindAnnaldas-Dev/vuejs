@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "@/views/HomeView.vue";
 import CollectionView from "@/views/CollectionView.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
+import ShoeCardDetails from "@/views/ShoeCardDetails.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -12,10 +13,14 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/collection",
-      alias: "/shoes",
-      name: "collection",
+      path: "/collections",
+      name: "collections",
       component: CollectionView,
+    },
+    {
+      path: "/collections/:id",
+      name: "collection",
+      component: ShoeCardDetails,
     },
     {
       path: "/:pathMatch(.*)*",

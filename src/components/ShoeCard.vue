@@ -41,7 +41,7 @@ const hasDiscount = computed(
 </script>
 
 <template>
-  <RouterLink :to="'/collection/' + shoe.id">
+  <RouterLink :to="'/collections/' + shoe?.id">
     <article
       class="flex flex-col h-full overflow-hidden transition duration-300 bg-white border shadow-sm group rounded-4xl border-stone-200/80 hover:-translate-y-1 hover:shadow-2xl hover:shadow-stone-200/70"
     >

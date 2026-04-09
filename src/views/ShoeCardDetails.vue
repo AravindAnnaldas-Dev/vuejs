@@ -1,13 +1,10 @@
 <script setup>
-import { computed } from "vue";
-import shoesList from "@/shoes.json";
+import { computed, onMounted, reactive } from "vue";
 import { formatPrice, getRelativeTime } from "@/utils/productFormatter";
+import { RouterLink, useRoute } from "vue-router";
+import axios from "axios";
 
 const props = defineProps({
-  shoe: {
-    type: Object,
-    default: null,
-  },
   ctaLabel: {
     type: String,
     default: "Add to Bag",
@@ -18,7 +15,27 @@ const props = defineProps({
   },
 });
 
-const product = computed(() => props.shoe ?? shoesList.shoes[0] ?? {});
+const route = useRoute();
+const shoeId = route.params.id;
+
+const state = reactive({
+  shoe: {},
+  isLoading: true,
+});
+
+onMounted(async () => {
+  state.isLoading = true;
+  try {
+    const response = await axios.get(`/api/shoes/${shoeId}`);
+    state.shoe = response.data;
+  } catch (error) {
+    console.error("Error fetching shoe collection", error);
+  } finally {
+    state.isLoading = false;
+  }
+});
+
+const product = computed(() => state.shoe ?? {});
 
 const hasDiscount = computed(
   () =>
@@ -134,8 +151,23 @@ const storeBenefits = [
 </script>
 
 <template>
-  <section class="px-4 pt-8 pb-16">
+  <section v-if="!state.isLoading" class="px-4 pt-8 pb-16">
     <div class="mx-auto max-w-7xl">
+      <div class="mb-6">
+        <RouterLink
+          to="/collections"
+          class="inline-flex items-center gap-3 rounded-full border border-white/80 bg-white/80 p-3 text-sm font-semibold uppercase tracking-[0.2em] text-stone-700 shadow-lg shadow-stone-200/40 backdrop-blur transition hover:border-stone-300 hover:text-stone-900 cursor-pointer"
+          aria-label="Go back"
+        >
+          <span
+            class="flex items-center justify-center text-white rounded-full h-9 w-9 bg-stone-900"
+          >
+            <i class="text-xs pi pi-arrow-left"></i>
+          </span>
+          Back
+        </RouterLink>
+      </div>
+
       <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
         <div class="space-y-6">
           <div
@@ -222,7 +254,7 @@ const storeBenefits = [
             </article>
           </div>
 
-          <div class="grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
+          <div class="flex flex-col items-stretch justify-start gap-4">
             <article
               class="p-6 border shadow-lg rounded-4xl border-white/80 bg-white/75 shadow-stone-200/40 backdrop-blur"
             >

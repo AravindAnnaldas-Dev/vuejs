@@ -11,7 +11,7 @@ const state = reactive({
 onMounted(async () => {
   state.isLoading = true;
   try {
-    const response = await axios.get("http://localhost:8000/shoes");
+    const response = await axios.get("/api/shoes");
     state.shoes = response.data;
   } catch (error) {
     console.error("Error fetching shoe collections", error);

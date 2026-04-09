@@ -12,9 +12,9 @@ const menuItems = [
     path: "/",
   },
   {
-    key: "collection",
+    key: "collections",
     label: "Collection",
-    path: "/collection",
+    path: "/collections",
   },
 ];
 

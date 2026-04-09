@@ -26,7 +26,7 @@ defineProps({
   },
   to: {
     type: String,
-    default: "/collection",
+    default: "/collections",
   },
   surfaceClass: {
     type: String,

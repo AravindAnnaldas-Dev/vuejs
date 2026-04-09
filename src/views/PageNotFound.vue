@@ -20,7 +20,7 @@ defineProps({
   },
   secondaryTo: {
     type: [String, Object],
-    default: "/collection",
+    default: "/collections",
   },
 });
 
