@@ -2,6 +2,7 @@
 import ShoeCards from "@/components/ShoeCards.vue";
 import axios from "axios";
 import { onMounted, reactive } from "vue";
+import { RouterLink } from "vue-router";
 
 const state = reactive({
   shoes: [],
@@ -40,6 +41,12 @@ onMounted(async () => {
             The listing page now showcases product details instead of job meta,
             with a layout tuned for browsing pairs quickly and comfortably.
           </p>
+          <RouterLink
+            to="/add-shoe"
+            class="inline-flex items-center px-6 py-3 mt-6 text-sm font-semibold text-white transition rounded-full bg-stone-900 hover:bg-[#c56232]"
+          >
+            Add Shoe
+          </RouterLink>
         </div>
 
         <div

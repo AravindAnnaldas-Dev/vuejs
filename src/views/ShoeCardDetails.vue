@@ -1,8 +1,9 @@
 <script setup>
 import { computed, onMounted, reactive } from "vue";
 import { formatPrice, getRelativeTime } from "@/utils/productFormatter";
-import { RouterLink, useRoute } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import axios from "axios";
+import { useToast } from "vue-toastification";
 
 const props = defineProps({
   ctaLabel: {
@@ -16,6 +17,8 @@ const props = defineProps({
 });
 
 const route = useRoute();
+const router = useRouter();
+const toast = useToast();
 const shoeId = route.params.id;
 
 const state = reactive({
@@ -34,6 +37,22 @@ onMounted(async () => {
     state.isLoading = false;
   }
 });
+
+const handleDeleteShoe = async () => {
+  try {
+    const confirm = window.confirm(
+      "Are you sure you want to delete this shoe?",
+    );
+    if (confirm) {
+      await axios.delete(`/api/shoes/${shoeId}`);
+      toast.success("Shoe Deleted Successfully!");
+      router.push("/collections");
+    }
+  } catch (error) {
+    console.error("Error fetching shoe collection", error);
+    toast.success("Shoe Not Deleted!");
+  }
+};
 
 const product = computed(() => state.shoe ?? {});
 
@@ -153,7 +172,7 @@ const storeBenefits = [
 <template>
   <section v-if="!state.isLoading" class="px-4 pt-8 pb-16">
     <div class="mx-auto max-w-7xl">
-      <div class="mb-6">
+      <div class="flex items-center mb-6">
         <RouterLink
           to="/collections"
           class="inline-flex items-center gap-3 rounded-full border border-white/80 bg-white/80 p-3 text-sm font-semibold uppercase tracking-[0.2em] text-stone-700 shadow-lg shadow-stone-200/40 backdrop-blur transition hover:border-stone-300 hover:text-stone-900 cursor-pointer"
@@ -166,6 +185,22 @@ const storeBenefits = [
           </span>
           Back
         </RouterLink>
+
+        <div class="flex flex-wrap gap-4 ml-auto">
+          <RouterLink
+            :to="'/collections/edit/' + shoeId"
+            class="px-6 py-3.5 text-sm font-semibold transition border rounded-full shadow-lg cursor-pointer border-white/80 bg-white/80 text-stone-700 shadow-stone-200/40 hover:border-stone-300 hover:text-stone-900"
+          >
+            Edit Shoe
+          </RouterLink>
+          <button
+            @click="handleDeleteShoe"
+            type="button"
+            class="rounded-full bg-[#c56232] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#9a4e28] cursor-pointer"
+          >
+            Delete Shoe
+          </button>
+        </div>
       </div>
 
       <div class="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">

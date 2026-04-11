@@ -103,16 +103,14 @@
       "tagline": "Clean, lightweight, and easy to wear anywhere.",
       "price": 5999,
       "originalPrice": 6499,
-      "fit": "Relaxed",
+      "fit": "relaxed",
       "sizeRange": "UK 6-10",
       "material": "Stretch knit",
       "colors": ["Charcoal", "Stone", "Moon"],
-      "rating": 4.4,
-      "reviews": 58,
       "badge": "Weekend Pick",
-      "releasedAt": "2026-03-26T12:45:00Z",
       "image": "https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=900&q=80",
       "description": "Mono Slip is made for low-effort styling, combining a soft stretch-knit upper, flexible sole, and streamlined shape that slips on quickly and feels light through the day."
     }
-  ]
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

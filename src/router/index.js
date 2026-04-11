@@ -3,7 +3,8 @@ import HomeView from "@/views/HomeView.vue";
 import CollectionView from "@/views/CollectionView.vue";
 import PageNotFound from "@/views/PageNotFound.vue";
 import ShoeCardDetails from "@/views/ShoeCardDetails.vue";
-import AddShoe from "@/components/AddShoe.vue";
+import AddShoeView from "@/views/AddShoeView.vue";
+import EditShoeView from "@/views/EditShoeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,7 +27,12 @@ const router = createRouter({
     {
       path: "/add-shoe",
       name: "add-shoe",
-      component: AddShoe,
+      component: AddShoeView,
+    },
+    {
+      path: "/collections/edit/:id",
+      name: "edit-shoe",
+      component: EditShoeView,
     },
     {
       path: "/:pathMatch(.*)*",
